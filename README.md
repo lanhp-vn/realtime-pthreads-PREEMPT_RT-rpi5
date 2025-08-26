@@ -144,23 +144,6 @@ App #3 runtime: 6.800000 seconds
 | Multiple RT (FIFO) | 2.37s / 4.73s | 6.80s | RT serialization |
 | Multiple RT (RR) | 4.66s / 4.73s | 6.80s | Fair sharing overhead |
 
-## Technical Implementation Details
-
-### Thread Attribute Configuration
-```cpp
-pthread_attr_init(&thread_attr);
-pthread_attr_setschedpolicy(&thread_attr, policy_);
-pthread_attr_setschedparam(&thread_attr, &param);
-pthread_attr_setstacksize(&thread_attr, 1024 * 1024);
-pthread_attr_setinheritsched(&thread_attr, PTHREAD_EXPLICIT_SCHED);
-```
-
-### Real-Time Capabilities
-- Priority inheritance prevention
-- Explicit scheduling policy control
-- Memory locking for deterministic behavior
-- High-precision timing measurement
-
 ## Conclusions
 
 1. **CPU Affinity**: Free CPU allocation significantly improves overall system performance
